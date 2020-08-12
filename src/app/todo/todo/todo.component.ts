@@ -15,7 +15,8 @@ export class TodoComponent implements OnInit {
   constructor(private store: Store) {}
 
   public onComplete() {
-    this.todo.completed = true;
+    this.store.dispatch(TodoActions.CompleteTodo({todo: this.todo, completed: true}));
+    // this.todo.completed = true;
   }
 
   public cancel() {

@@ -1,7 +1,8 @@
-import {Action, createReducer, on, props} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {Todo} from '../models/todo';
 
 import * as TodoActions from '../actions/todo.actions';
+import {map} from 'rxjs/operators';
 
 export interface TodosState {
   todos: Todo[];
@@ -13,6 +14,19 @@ export const initialState: TodosState = {
 
 const todoReducer = createReducer(
   initialState,
+  on(TodoActions.CompleteTodo, (state, {todo, completed}) => {
+    console.log('complete todo action');
+
+    return {
+      ...state,
+      todos: state.todos.map((t) => {
+          if (t.id == todo.id) {
+            t = {...t, completed};
+          }
+          return t;
+        })
+    };
+  }),
   on(TodoActions.FillInTodos, (state, {todos}) => {
     console.log('fill in todos action');
 
@@ -26,14 +40,13 @@ const todoReducer = createReducer(
 
     return {
       ...state,
-      // todos: state.todos = this.testData
     };
   }),
 
   // on(TodoActions.DeleteTodo, (state, {todoId}) => {
   //   return {
   //     ...state,
-  //     todos: state.todos.filter(e => e.id != todoId)
+  //     todos: state.todos.filter(t => t.id != todoId)
   //   };
   // })
 );
