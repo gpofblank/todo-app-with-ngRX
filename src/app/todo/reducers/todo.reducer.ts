@@ -14,6 +14,19 @@ export const initialState: TodosState = {
 
 const todoReducer = createReducer(
   initialState,
+  on(TodoActions.CancelTodo, (state, {todo, completed}) => {
+    console.log('cancel todo action');
+
+    return {
+      ...state,
+      todos: state.todos.map((t) => {
+        if (t.id == todo.id) {
+          t = {...t, completed};
+        }
+        return t;
+      })
+    };
+  }),
   on(TodoActions.CompleteTodo, (state, {todo, completed}) => {
     console.log('complete todo action');
 

@@ -2,6 +2,11 @@ import {Todo} from '../models/todo';
 // @ts-ignore
 import {createAction, props} from '@ngrx/store';
 
+export const CancelTodo = createAction(
+  '[Todos] Cancel Todo',
+  props<{ todo: Todo, completed: boolean }>()
+);
+
 export const CompleteTodo = createAction(
   '[Todos] Complete Todo',
   props<{ todo: Todo, completed: boolean }>()
