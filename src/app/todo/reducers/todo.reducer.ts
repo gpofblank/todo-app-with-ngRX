@@ -14,6 +14,14 @@ export const initialState: TodosState = {
 
 const todoReducer = createReducer(
   initialState,
+  on(TodoActions.AddTodo, (state, {todo}) => {
+    console.log('add todo action');
+
+    return {
+      ...state,
+      todos: state.todos.concat(todo)
+    };
+  }),
   on(TodoActions.CancelTodo, (state, {todo, completed}) => {
     console.log('cancel todo action');
 

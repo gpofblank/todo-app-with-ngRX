@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Todo} from '../models/todo';
 import {Store} from '@ngrx/store';
 import * as TodoActions from '../actions/todo.actions';
-import {GetTodos} from '../actions/todo.actions';
 
 @Component({
   selector: 'app-todo-list-page',
@@ -68,7 +67,8 @@ export class TodoListPageComponent implements OnInit {
     };
 
     this.todoText = '';
-    this.todos.push(todo);
+
+    this.store.dispatch(TodoActions.AddTodo({todo}));
   }
 
 }
