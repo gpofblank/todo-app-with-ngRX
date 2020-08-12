@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Todo} from '../models/todo';
 
+import { Store } from '@ngrx/store';
+import * as TodoActions from '../actions/todo.actions';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -9,7 +12,7 @@ import {Todo} from '../models/todo';
 export class TodoComponent implements OnInit {
   @Input() todo: Todo;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   public onComplete() {
     this.todo.completed = true;
