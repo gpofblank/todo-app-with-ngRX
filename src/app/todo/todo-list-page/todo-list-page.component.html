@@ -1,1 +1,23 @@
-<p>todo-list-page works!</p>
+<div class="todoInputWrapper">
+    <mat-form-field class="formHolder">
+      <mat-label>Todo content</mat-label>
+      <textarea
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="10"
+        matInput id="input" type="text" [(ngModel)]="todoText"></textarea>
+    </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="accent"
+    class="addButton"
+    [disabled]="todoText.length == 0"
+    (click)="addTodo()"
+  >
+    Add todo
+  </button>
+</div>
+<div class="todos">
+  <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+</div>

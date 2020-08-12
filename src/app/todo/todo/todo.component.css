@@ -1,0 +1,25 @@
+.todo {
+  text-align: center;
+  border: 1px solid #673AB7;
+  padding: 20px 70px 20px 70px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.divider {
+  border-bottom: 1px solid #673AB7;
+}
+
+.spacer {
+  padding: 5px;
+}
+
+.header {
+  text-align: left;
+}
+
+p {
+  text-align: left;
+}

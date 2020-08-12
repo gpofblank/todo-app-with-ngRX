@@ -1,1 +1,31 @@
-<p>todo works!</p>
+<div class="todo" [ngClass]="{ completed: todo.completed }" id="{{ todo.id }}">
+  <div class="header">
+    Created at: {{ todo.createdAt.toLocaleString() }}
+  </div>
+  <div class="divider"></div>
+
+  <p>{{ todo.text }}</p>
+
+  <div class="actions">
+
+    <button
+      mat-raised-button
+      color="accent"
+      class="completeButton"
+      *ngIf="!todo.completed"
+      (click)="onComplete()"
+    >
+      Complete
+    </button>
+
+    <span class="spacer" *ngIf="todo.completed">Done</span>
+
+    <button
+      mat-raised-button
+      color="accent"
+      class="cancelButton" *ngIf="todo.completed" (click)="cancel()">
+      Cancel
+    </button>
+
+  </div>
+</div>
