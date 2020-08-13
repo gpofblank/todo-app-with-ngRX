@@ -41,7 +41,7 @@ const todoReducer = createReducer(
 
     return {
       ...state,
-      todos: state.todos.concat(todo)
+      todos: [todo, ...state.todos]
     };
   }),
   on(TodoActions.CancelTodo, (state, {todo, completed}) => {
