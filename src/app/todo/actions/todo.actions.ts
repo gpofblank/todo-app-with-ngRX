@@ -3,6 +3,16 @@ import {Todo} from '../models/todo';
 import {createAction, props} from '@ngrx/store';
 
 
+// export const GetTodoById = createAction(
+//   '[Todos] Get Todo by ID',
+//   props<{ id: number | string }>()
+// );
+
+export const EditTodo = createAction(
+  '[Todos] Edit Todo',
+  props<{ id: number | string, changes: any }>()
+);
+
 export const AddTodo = createAction(
   '[Todos] Add Todo',
   props<{ todo: Todo }>()

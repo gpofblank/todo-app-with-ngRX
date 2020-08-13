@@ -2,7 +2,6 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {Todo} from '../models/todo';
 
 import * as TodoActions from '../actions/todo.actions';
-import {map} from 'rxjs/operators';
 
 export interface TodosState {
   todos: Todo[];
@@ -14,6 +13,29 @@ export const initialState: TodosState = {
 
 const todoReducer = createReducer(
   initialState,
+
+  // on(TodoActions.GetTodoById, (state, {id}) => {
+  //   console.log('get todo by id action');
+  //
+  //   return {
+  //     ...state,
+  //   };
+  // }),
+
+  on(TodoActions.EditTodo, (state, {id, changes}) => {
+    console.log('edit todo action');
+    console.log(changes);
+    return {
+      ...state,
+      todos: state.todos.map((t) => {
+        if (t.id == id) {
+          t = {...t, ...changes};
+        }
+        return t;
+      })
+    };
+  }),
+
   on(TodoActions.AddTodo, (state, {todo}) => {
     console.log('add todo action');
 
@@ -41,11 +63,11 @@ const todoReducer = createReducer(
     return {
       ...state,
       todos: state.todos.map((t) => {
-          if (t.id == todo.id) {
-            t = {...t, completed};
-          }
-          return t;
-        })
+        if (t.id == todo.id) {
+          t = {...t, completed};
+        }
+        return t;
+      })
     };
   }),
   on(TodoActions.FillInTodos, (state, {todos}) => {
@@ -64,13 +86,14 @@ const todoReducer = createReducer(
     };
   }),
 
-  // on(TodoActions.DeleteTodo, (state, {todoId}) => {
-  //   return {
-  //     ...state,
-  //     todos: state.todos.filter(t => t.id != todoId)
-  //   };
-  // })
-);
+// on(TodoActions.DeleteTodo, (state, {todoId}) => {
+//   return {
+//     ...state,
+//     todos: state.todos.filter(t => t.id != todoId)
+//   };
+// })
+  )
+;
 
 export function todoReducerState(state: TodosState | undefined, action: Action) {
   return todoReducer(state, action);

@@ -1,0 +1,17 @@
+.form-container {
+  margin: auto;
+  width: 50%;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  width: 100%;
+}
+
+textarea {
+  min-height: 300px;
+}

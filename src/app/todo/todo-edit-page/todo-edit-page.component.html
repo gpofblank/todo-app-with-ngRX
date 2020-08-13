@@ -1,0 +1,30 @@
+<mat-card class="form-container">
+  <mat-card-header>
+    <mat-card-title>Edit Todo</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form
+      class="form-wrapper"
+      [formGroup]="todoEditForm"
+    >
+      <mat-form-field class="form-field">
+        <mat-label>Created At</mat-label>
+        <input formControlName="createdAt" type="text" matInput [matDatepicker]="picker" value="{{todo.createdAt}}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Text</mat-label>
+        <textarea formControlName="text" type="text" matInput>{{todo.text}}</textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions [align]="'end'">
+    <button mat-button routerLink="../../">Cancel</button>
+    <button mat-raised-button color="accent" (click)="submit()">
+      Save
+    </button>
+  </mat-card-actions>
+</mat-card>

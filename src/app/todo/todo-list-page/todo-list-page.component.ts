@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Todo} from '../models/todo';
 import {Store} from '@ngrx/store';
 import * as TodoActions from '../actions/todo.actions';
@@ -35,15 +35,14 @@ export class TodoListPageComponent implements OnInit {
     }];
 
   constructor(private store: Store) {
-    this.store.dispatch(TodoActions.FillInTodos({todos: this.todoTestData}));
-
+    //this.store.dispatch(TodoActions.FillInTodos({todos: this.todoTestData}));
   }
-  ngOnInit() {
 
+  ngOnInit() {
 
     this.store.select((state: any) => state)
       .subscribe((data) => {
-        console.log(data)
+        console.log(data);
         if (data) {
           this.todos = data.todoReducerState.todos;
         }
