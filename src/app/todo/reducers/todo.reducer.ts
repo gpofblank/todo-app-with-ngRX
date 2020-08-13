@@ -22,6 +22,15 @@ const todoReducer = createReducer(
   //   };
   // }),
 
+  on(TodoActions.ReorderTodo, (state, {prevIndex, currIndex}) => {
+    console.log('reorder todo action');
+
+    return {
+      ...state,
+      todos: reorder(state.todos, prevIndex, currIndex)
+    };
+  }),
+
   on(TodoActions.EditTodo, (state, {id, changes}) => {
     console.log('edit todo action');
     console.log(changes);
@@ -98,3 +107,11 @@ const todoReducer = createReducer(
 export function todoReducerState(state: TodosState | undefined, action: Action) {
   return todoReducer(state, action);
 }
+
+const reorder = (arr, from, to) => {
+  const clone = [...arr];
+  Array.prototype.splice.call(clone, to, 0,
+    Array.prototype.splice.call(clone, from, 1)[0]
+  );
+  return clone;
+};

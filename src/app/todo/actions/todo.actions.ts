@@ -8,6 +8,11 @@ import {createAction, props} from '@ngrx/store';
 //   props<{ id: number | string }>()
 // );
 
+export const ReorderTodo = createAction(
+  '[Todos] Reorder Todo',
+  props<{prevIndex: number, currIndex: number }>()
+);
+
 export const EditTodo = createAction(
   '[Todos] Edit Todo',
   props<{ id: number | string, changes: any }>()

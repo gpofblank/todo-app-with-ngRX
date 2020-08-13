@@ -3,6 +3,7 @@ import {Todo} from '../models/todo';
 import {Store} from '@ngrx/store';
 import * as TodoActions from '../actions/todo.actions';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-todo-list-page',
@@ -54,7 +55,7 @@ export class TodoListPageComponent implements OnInit {
     }];
 
   constructor(private store: Store) {
-    //this.store.dispatch(TodoActions.FillInTodos({todos: this.todoTestData}));
+    // this.store.dispatch(TodoActions.FillInTodos({todos: this.todoTestData}));
   }
 
   ngOnInit() {
@@ -87,6 +88,17 @@ export class TodoListPageComponent implements OnInit {
     this.todoText = '';
 
     this.store.dispatch(TodoActions.AddTodo({todo}));
+  }
+
+  drop(event: CdkDragDrop<Todo[]>) {
+    console.log('event -> ', event);
+    console.log('data -> ', event.item.data);
+
+    const prevIndex = event.previousIndex;
+    const currIndex = event.currentIndex;
+
+    // moveItemInArray(this.todos, prevIndex, currIndex);
+    this.store.dispatch(TodoActions.ReorderTodo({prevIndex, currIndex}))
   }
 
 }
