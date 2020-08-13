@@ -19,5 +19,5 @@
   </button>
 </div>
 <div class="todos">
-  <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+  <app-todo [@fadeAnimation]="'in'" *ngFor="let todo of todos" [todo]="todo"></app-todo>
 </div>

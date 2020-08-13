@@ -2,11 +2,30 @@ import {Component, OnInit} from '@angular/core';
 import {Todo} from '../models/todo';
 import {Store} from '@ngrx/store';
 import * as TodoActions from '../actions/todo.actions';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-todo-list-page',
   templateUrl: './todo-list-page.component.html',
-  styleUrls: ['./todo-list-page.component.css']
+  styleUrls: ['./todo-list-page.component.css'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('fadeAnimation', [
+
+      // the "in" style determines the "resting" state of the element when it is visible.
+      state('in', style({opacity: 1})),
+
+      // fade in when created. this could also be written as transition('void => *')
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(800 )
+      ]),
+
+      // fade out when destroyed. this could also be written as transition('void => *')
+      transition(':leave',
+        animate(600, style({opacity: 0})))
+    ])
+  ]
 })
 export class TodoListPageComponent implements OnInit {
 
