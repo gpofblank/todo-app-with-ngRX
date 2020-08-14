@@ -29,6 +29,15 @@ p {
   margin-right: 5px;
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
+.cancelButton {
+  background-color: gray;
+  color: white;
+}
+
 
 
 
