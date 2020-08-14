@@ -68,6 +68,10 @@ export class TodoListPageComponent implements OnInit {
         }
       });
 
+    const btn = document.getElementById('addTodo');
+    document.body.onkeydown = function(e) {
+      if (e.key === 'Enter') btn.click();
+    };
 
   }
 
